@@ -42,3 +42,12 @@ data class RefreshTokenRequest(
     @field:NotBlank(message = "Refresh token is required")
     val refreshToken: String
 )
+
+data class UpdateUserRequest(
+    val name: String? = null,
+
+    @field:Email(message = "Invalid email format")
+    val email: String? = null,
+
+    val avatarUrl: String? = null
+)

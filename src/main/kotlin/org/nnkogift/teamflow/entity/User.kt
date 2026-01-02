@@ -3,6 +3,7 @@ package org.nnkogift.teamflow.entity
 import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
+import org.nnkogift.teamflow.dto.UserResponse
 import java.time.LocalDateTime
 
 
@@ -26,7 +27,16 @@ data class User(
     val createdAt: LocalDateTime? = null,
     @UpdateTimestamp
     val updatedAt: LocalDateTime? = null
-)
+) {
+
+    fun toResponse() = UserResponse(
+        id = id!!,
+        email = email,
+        name = name,
+        avatarUrl = avatarUrl,
+        role = role.name
+    )
+}
 
 enum class UserRole {
     ADMIN, TEAM_LEAD, MEMBER
